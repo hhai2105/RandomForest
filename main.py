@@ -35,7 +35,7 @@ def wine(ntree, numFolds, isGini, minInfoGainMaxGiniIndex):
             trainingSet += folds[j]
         for j in range(i + 1, numFolds):
             trainingSet += folds[j]
-        forest = createForest( ntree, trainingSet, typeArray, isGini, minInfoGainMaxGiniIndex)
+        forest = createForestNoThread( ntree, trainingSet, typeArray, isGini, minInfoGainMaxGiniIndex)
         accuracy, precision, recall, f1 = testing(forest, testingSet)
         totalAccuracy += accuracy
         totalPrecision += precision
@@ -82,7 +82,7 @@ def houseVote(ntree, numFolds, isGini, minInfoGainMaxGiniIndex):
             trainingSet += folds[j]
         for j in range(i + 1, 10):
             trainingSet += folds[j]
-        forest = createForest( ntree, trainingSet, typeArray, isGini, minInfoGainMaxGiniIndex)
+        forest = createForestNoThread( ntree, trainingSet, typeArray, isGini, minInfoGainMaxGiniIndex)
         testing(forest, testingSet)
         accuracy, precision, recall, f1 = testing(forest, testingSet)
         totalAccuracy += accuracy
@@ -332,7 +332,7 @@ def runContraceptive(isGini, minInfoGainMaxGiniIndex):
     plt.show()
 
 
-runWine(1)
+#runWine(1, 1)
 #runCancer(0)
-#runHouseVote(1)
+runHouseVote(1, 1)
 #runContraceptive(0)
